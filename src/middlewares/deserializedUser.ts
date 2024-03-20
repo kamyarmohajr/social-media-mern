@@ -1,6 +1,5 @@
 import { Response, Request, NextFunction } from "express";
-import { verifyJwt } from "../utils/jwt.utils";
-import logger from "../utils/logger";
+import { verifyJwt } from "../utils/jwt.util";
 import { reIssueAccessToken } from "../service/session.service";
 import { get } from "lodash";
 
