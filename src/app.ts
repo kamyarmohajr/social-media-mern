@@ -1,18 +1,14 @@
-import express from "express";
+import connect from "./utils/connect.util";
+import logger from "./utils/logger.util";
+import createServer from "./utils/server.util";
 import config from "config";
-import connect from "./utils/connect";
-import logger from "./utils/logger";
-import routes from "./routes";
-import deserializedUser from "./middlewares/deserializedUser";
-const port = config.get<number>("port");
 
-const app = express();
-app.use(express.json());
+const PORT: number = config.get<number>("PORT");
 
-// app.use(deserializedUser);
-
-app.listen(port, async () => {
+const app = createServer();
+app.listen(PORT, async () => {
   logger.info("app is running");
   await connect();
-  routes(app);
 });
+
+export default app;
