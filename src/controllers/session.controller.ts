@@ -6,7 +6,7 @@ import {
   updateUserSession,
 } from "../service/session.service";
 import { UserDocument } from "../models/user.model";
-import { signJwt } from "../utils/jwt.utils";
+import { signJwt } from "../utils/jwt.util";
 import { SessionDocument } from "../models/session.model";
 import config from "config";
 
@@ -27,14 +27,14 @@ export const createUserSessionHandler = async (req: Request, res: Response) => {
     const accessToken = await signJwt(
       { ...user, session: session._id },
       {
-        expiresIn: config.get<string>("accessTokenTtl"),
+        expiresIn: config.get<string>("ACCESS_TOKEN_TTL"),
       }
     );
     // refresh token 1 year
     const refreshToken = await signJwt(
       { ...user, session: session._id },
       {
-        expiresIn: config.get<string>("refreshTokenTtl"),
+        expiresIn: config.get<string>("REFRESH_TOKEN_TTL"),
       }
     );
 
