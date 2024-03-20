@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import bcryptjs from "bcryptjs";
 import config from "config";
-import logger from "../utils/logger";
+import logger from "../utils/logger.util";
 
 export interface UserInput {
   name: string;
@@ -38,7 +38,7 @@ userSchema.pre("save", async function (next) {
   try {
     let user = this as UserDocument;
     if (!user.isModified("password")) return next();
-    const salt = await bcryptjs.genSalt(config.get<number>("roundOfSalt"));
+    const salt = await bcryptjs.genSalt(config.get<number>("ROUND_OF_SALT"));
     const hashedPassword = await bcryptjs.hash(user.password, salt);
     user.password = hashedPassword;
     return next();
