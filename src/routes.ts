@@ -18,6 +18,9 @@ const routes = (app: Express) => {
   );
   app.get("/api/sessions", deserializedUser, getUserSessionsHandler);
   app.delete("/api/session", deserializedUser, deleteUserSessionHandler);
+
+  app.post("/api/post/create");
+  app.get("/api/post/:postId");
 };
 
 export default routes;
