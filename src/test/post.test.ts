@@ -1,5 +1,7 @@
 import supertest from "supertest";
-import app from "../app";
+import createServer from "../utils/server.util";
+
+const app = createServer();
 
 describe("post", () => {
   describe("get post route", () => {
